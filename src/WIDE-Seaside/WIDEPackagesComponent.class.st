@@ -1,6 +1,6 @@
 Class {
 	#name : #WIDEPackagesComponent,
-	#superclass : #WIDEBrowserComponent,
+	#superclass : #WIDEListComponent,
 	#category : #'WIDE-Seaside-Widgets'
 }
 
@@ -27,16 +27,18 @@ WIDEPackagesComponent >> renderContentOn: html [
 								beCompact;
 								onClickJs: [ :entity | 
 									html jQuery ajax script: [ :jsScript |
-									jsScript << ((html jQuery id: self browser classesComponent id) load
-										html: [ :ajaxHtml |
-											self browserState selectPackage: entity.
-											ajaxHtml render: self browser classesComponent ]).
-									jsScript << ((html jQuery id: self browser protocolsComponent id) load
+										jsScript << ((html jQuery id: self browser classesComponent id) load
+											html: [ :ajaxHtml |
+												self browserState selectPackage: entity.
+												ajaxHtml render: self browser classesComponent ]).
+										jsScript << ((html jQuery id: self browser protocolsComponent id) load
 											html: [ :ajaxHtml |
 												ajaxHtml render: self browser protocolsComponent ]).
 										jsScript << ((html jQuery id: self browser methodsComponent id) load
 											html: [ :ajaxHtml |
 												ajaxHtml render: self browser methodsComponent ]).
+										jsScript << ((html jQuery id: self browser toolbarComponent id) load
+											html: [ :ajaxHtml | ajaxHtml render: self browser toolbarComponent ])
 									 ] ];
 								withResearchField;
 								filterPseudoRegex;

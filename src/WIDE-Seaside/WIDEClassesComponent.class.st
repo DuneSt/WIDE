@@ -1,6 +1,6 @@
 Class {
 	#name : #WIDEClassesComponent,
-	#superclass : #WIDEBrowserComponent,
+	#superclass : #WIDEListComponent,
 	#category : #'WIDE-Seaside-Widgets'
 }
 
@@ -30,8 +30,9 @@ WIDEClassesComponent >> renderContentOn: html [
 												self browserState selectClass: entity.
 												ajaxHtml render: self browser protocolsComponent ]).
 										jsScript << ((html jQuery id: self browser methodsComponent id) load
-											html: [ :ajaxHtml |
-												ajaxHtml render: self browser methodsComponent ]) ] ];
+											html: [ :ajaxHtml | ajaxHtml render: self browser methodsComponent ]).
+										jsScript << ((html jQuery id: self browser toolbarComponent id) load
+											html: [ :ajaxHtml | ajaxHtml render: self browser toolbarComponent ]) ] ];
 								withResearchField;
 								filterPseudoRegex;
 								childrenSortBlock: [ :child1 :child2 | child1 name < child2 name ];

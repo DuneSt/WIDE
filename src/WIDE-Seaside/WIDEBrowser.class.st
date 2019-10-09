@@ -12,7 +12,8 @@ Class {
 		'packagesComponent',
 		'classesComponent',
 		'protocolsComponent',
-		'methodsComponent'
+		'methodsComponent',
+		'toolbarComponent'
 	],
 	#category : #'WIDE-Seaside-Pages'
 }
@@ -34,7 +35,7 @@ WIDEBrowser >> browserState [
 
 { #category : #hooks }
 WIDEBrowser >> children [
-	^ { self packagesComponent. self classesComponent. self protocolsComponent. self methodsComponent }
+	^ { self packagesComponent. self classesComponent. self protocolsComponent. self methodsComponent. self toolbarComponent }
 ]
 
 { #category : #accessing }
@@ -50,10 +51,11 @@ WIDEBrowser >> classesComponent: anObject [
 { #category : #initialization }
 WIDEBrowser >> initialize [
 	super initialize.
-	packagesComponent := WIDEPackagesComponent browser: self.
-	classesComponent := WIDEClassesComponent browser: self.
-	protocolsComponent := WIDEProtocolsComponent browser: self.
-	methodsComponent := WIDEMethodsComponent browser: self
+	self packagesComponent: (WIDEPackagesComponent browser: self).
+	self classesComponent: (WIDEClassesComponent browser: self).
+	self protocolsComponent: (WIDEProtocolsComponent browser: self).
+	self methodsComponent: (WIDEMethodsComponent browser: self).
+	self toolbarComponent: (WIDEToolbarComponent browser: self).
 ]
 
 { #category : #accessing }
@@ -88,10 +90,8 @@ WIDEBrowser >> protocolsComponent: anObject [
 
 { #category : #rendering }
 WIDEBrowser >> renderContentOn: html [
-	self packagesComponent ensureId: html.
-	self classesComponent ensureId: html.
-	self protocolsComponent ensureId: html.
-	self methodsComponent ensureId: html.
+	self children do: [ :childComponent |
+		childComponent ensureId: html ].
 	html mdlGrid
 		shadow: 2;
 		with: [ 
@@ -111,10 +111,21 @@ WIDEBrowser >> renderContentOn: html [
 				size: 3;
 				with: [ 
 					html render: self methodsComponent ] ].
+	html render: self toolbarComponent.
 	html mdlGrid
 		shadow: 2;
 		with: [ 
 			html mdlCell
 				size: 12;
 				with: 'Code'. ].
+]
+
+{ #category : #accessing }
+WIDEBrowser >> toolbarComponent [
+	^ toolbarComponent
+]
+
+{ #category : #accessing }
+WIDEBrowser >> toolbarComponent: anObject [
+	toolbarComponent := anObject
 ]

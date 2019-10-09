@@ -1,6 +1,6 @@
 Class {
 	#name : #WIDEProtocolsComponent,
-	#superclass : #WIDEBrowserComponent,
+	#superclass : #WIDEListComponent,
 	#category : #'WIDE-Seaside-Widgets'
 }
 

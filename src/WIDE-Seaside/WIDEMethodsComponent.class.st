@@ -1,6 +1,6 @@
 Class {
 	#name : #WIDEMethodsComponent,
-	#superclass : #WIDEBrowserComponent,
+	#superclass : #WIDEListComponent,
 	#category : #'WIDE-Seaside-Widgets'
 }
 
@@ -22,7 +22,13 @@ WIDEMethodsComponent >> renderContentOn: html [
 								elements: ((self environment methodsFor: self browserState selectedClass under: self browserState selectedProtocol) sorted: #selector ascending)
 								children: [ :packageOrClass | #() ])
 								format: #selector;
-								"onClickJs: [ :entity |  ];" flag: #TODO; "Display code!"
+								onClickJs: [ :entity | 
+									html jQuery ajax script: [ :jsScript |
+										jsScript << ((html jQuery id: self browser toolbarComponent id) load
+											html: [ :ajaxHtml |
+												self browserState selectMethod: entity.
+												ajaxHtml render: self browser toolbarComponent ]).
+									 ] ];flag: #TODO; "Display code!"
 								beCompact;
 								withResearchField;
 								filterPseudoRegex;
