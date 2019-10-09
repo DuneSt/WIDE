@@ -31,7 +31,6 @@ WIDEClassesComponent >> renderContentOn: html [
 												ajaxHtml render: self browser protocolsComponent ]).
 										jsScript << ((html jQuery id: self browser methodsComponent id) load
 											html: [ :ajaxHtml |
-												self browserState selectClass: entity.
 												ajaxHtml render: self browser methodsComponent ]) ] ];
 								withResearchField;
 								filterPseudoRegex;

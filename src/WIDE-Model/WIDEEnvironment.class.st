@@ -6,18 +6,14 @@ Class {
 
 { #category : #accessing }
 WIDEEnvironment >> classesFor: aPackage [
-	^ aPackage ifNil: [ #() ] ifNotNil: [ aPackage classes asArray ]
+	^ aPackage classes asArray
 ]
 
 { #category : #accessing }
 WIDEEnvironment >> methodsFor: aClass under: aProtocol [
-	aClass
-		ifNil: [ ^ #() ].
-		
-	aProtocol
-		ifNil: [ ^ aClass methods asArray ].
-	
-	^ aProtocol methods collect: [ :selector | aClass >> selector ]
+	[
+		^ aProtocol methods collect: [ :selector | aClass >> selector ]
+	] on: WIDENullClassError do: [ ^ aClass methods ]
 ]
 
 { #category : #accessing }
@@ -27,7 +23,7 @@ WIDEEnvironment >> packages [
 
 { #category : #accessing }
 WIDEEnvironment >> protocolsFor: aClass [
-	^ aClass ifNil: [ #() ] ifNotNil: [ aClass organization protocols ]
+	^ aClass organization protocols
 ]
 
 { #category : #accessing }
