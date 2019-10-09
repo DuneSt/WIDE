@@ -1,0 +1,2 @@
+# WIDE
+Pharo Web IDE.
