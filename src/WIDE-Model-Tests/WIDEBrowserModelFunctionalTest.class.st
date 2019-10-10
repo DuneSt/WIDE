@@ -50,3 +50,15 @@ WIDEBrowserModelFunctionalTest >> testProtocolStepExistByDefaultWhenPackageAndCl
 	self assert: classStep nextStep notNil.
 	self assert: classStep nextStep class equals: WIDEProtocolStep
 ]
+
+{ #category : #running }
+WIDEBrowserModelFunctionalTest >> testVariableStepExistWhenPackageAndClassAreSelectedAndStrategyShowVariables [
+	| packageStep classStep |
+	browserModel strategy showVariables.
+	packageStep := browserModel path packageStep.
+	packageStep selectedElement: packageStep allElements anyOne.
+	classStep := packageStep nextStep.
+	classStep selectedElement: classStep allElements anyOne.
+	self assert: classStep nextStep notNil.
+	self assert: classStep nextStep class equals: WIDEVariableStep
+]
