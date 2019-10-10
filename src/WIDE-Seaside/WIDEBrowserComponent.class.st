@@ -25,6 +25,11 @@ WIDEBrowserComponent >> browser: anObject [
 ]
 
 { #category : #accessing }
+WIDEBrowserComponent >> browserStrategy [
+	^ self browser strategy
+]
+
+{ #category : #accessing }
 WIDEBrowserComponent >> environment [
 	^ self browser environment
 ]

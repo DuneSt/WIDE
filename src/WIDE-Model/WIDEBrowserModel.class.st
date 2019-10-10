@@ -12,9 +12,10 @@ Class {
 }
 
 { #category : #accessing }
-WIDEBrowserModel >> initialize [ 
+WIDEBrowserModel >> initialize [
 	super initialize.
-	self path: WIDEPath new
+	self path: WIDEPath new.
+	self strategy: WIDEBrowserModelStrategy new
 ]
 
 { #category : #accessing }
@@ -40,5 +41,11 @@ WIDEBrowserModel >> strategy [
 
 { #category : #accessing }
 WIDEBrowserModel >> strategy: anObject [
-	strategy := anObject
+	strategy := anObject.
+	strategy model: self
+]
+
+{ #category : #accessing }
+WIDEBrowserModel >> toggleMethodsOrVariables [
+	self path toggleMethodsOrVariables
 ]

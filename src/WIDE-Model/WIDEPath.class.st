@@ -49,11 +49,18 @@ WIDEPath >> packageStep [
 ]
 
 { #category : #accessing }
-WIDEPath >> packageStep: anObject [
-	packageStep := anObject
+WIDEPath >> packageStep: aPackageStep [
+	packageStep := aPackageStep.
+	aPackageStep path: self
+	
 ]
 
 { #category : #accessing }
 WIDEPath >> selectedMethod [
 	^ self packageStep selectedMethod
+]
+
+{ #category : #accessing }
+WIDEPath >> toggleMethodsOrVariables [
+	self packageStep toggleMethodsOrVariables
 ]

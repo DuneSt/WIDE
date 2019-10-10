@@ -12,6 +12,11 @@ WIDEProtocolStep >> allElements [
 	^ self selectedClass organization protocols
 ]
 
+{ #category : #accessing }
+WIDEProtocolStep >> methodsForSelectedElement [
+	^ self selectedElement methods collect: [ :selector | self selectedClass >> selector ]
+]
+
 { #category : #hooks }
 WIDEProtocolStep >> nextStepClass [
 	^ WIDEMethodStep 

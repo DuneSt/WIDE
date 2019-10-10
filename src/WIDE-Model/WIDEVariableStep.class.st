@@ -7,7 +7,22 @@ Class {
 	#category : #'WIDE-Model-Core'
 }
 
+{ #category : #accessing }
+WIDEVariableStep >> allElements [
+	^ self selectedClass slots
+]
+
+{ #category : #accessing }
+WIDEVariableStep >> methodsForSelectedElement [
+	^ self selectedElement usingMethods
+]
+
 { #category : #hooks }
 WIDEVariableStep >> nextStepClass [
 	^ WIDEMethodStep 
+]
+
+{ #category : #hooks }
+WIDEVariableStep >> selectedClass [
+	^ self previousStep selectedElement
 ]

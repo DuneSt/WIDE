@@ -84,3 +84,8 @@ WIDEAbstractStep >> selectedElementWillChange [
 WIDEAbstractStep >> selectedMethod [
 	^ self nextStep selectedMethod
 ]
+
+{ #category : #accessing }
+WIDEAbstractStep >> toggleMethodsOrVariables [
+	self nextStep toggleMethodsOrVariables
+]
