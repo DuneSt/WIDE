@@ -12,13 +12,20 @@ Class {
 }
 
 { #category : #accessing }
+WIDEBrowserModel >> initialize [ 
+	super initialize.
+	self path: WIDEPath new
+]
+
+{ #category : #accessing }
 WIDEBrowserModel >> path [
 	^ path
 ]
 
 { #category : #accessing }
-WIDEBrowserModel >> path: anObject [
-	path := anObject
+WIDEBrowserModel >> path: aPath [
+	path := aPath.
+	aPath browser: self
 ]
 
 { #category : #accessing }

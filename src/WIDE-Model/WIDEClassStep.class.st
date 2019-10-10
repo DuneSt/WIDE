@@ -12,6 +12,16 @@ WIDEClassStep >> allElements [
 	^ self selectedPackage classes 
 ]
 
+{ #category : #'as yet unclassified' }
+WIDEClassStep >> nextStepClass [
+	^ WIDEProtocolStep 
+]
+
+{ #category : #accessing }
+WIDEClassStep >> selectedClass [
+	^ self selectedElement
+]
+
 { #category : #accessing }
 WIDEClassStep >> selectedPackage [
 	^ self previousStep selectedElement

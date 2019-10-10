@@ -6,3 +6,18 @@ Class {
 	#superclass : #WIDEAbstractStep,
 	#category : #'WIDE-Model-Core'
 }
+
+{ #category : #accessing }
+WIDEProtocolStep >> allElements [
+	^ self selectedClass organization protocols
+]
+
+{ #category : #'as yet unclassified' }
+WIDEProtocolStep >> nextStepClass [
+	^ WIDEMethodStep 
+]
+
+{ #category : #accessing }
+WIDEProtocolStep >> selectedClass [
+	^ self previousStep selectedElement
+]

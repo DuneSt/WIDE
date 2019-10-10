@@ -11,8 +11,18 @@ Class {
 }
 
 { #category : #accessing }
+WIDEPackageStep >> allElements [ 
+	^ RPackage organizer packages
+]
+
+{ #category : #accessing }
 WIDEPackageStep >> browserStrategy [
 	^ self path browserStrategy
+]
+
+{ #category : #'as yet unclassified' }
+WIDEPackageStep >> nextStepClass [
+	^ WIDEClassStep 
 ]
 
 { #category : #accessing }

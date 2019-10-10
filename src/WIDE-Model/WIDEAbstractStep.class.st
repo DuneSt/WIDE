@@ -18,6 +18,11 @@ WIDEAbstractStep >> allElements [
 ]
 
 { #category : #accessing }
+WIDEAbstractStep >> allElementsSorted [
+	^ self allElements sorted: #name ascending
+]
+
+{ #category : #accessing }
 WIDEAbstractStep >> browserStrategy [
 	^ self previousStep browserStrategy
 ]
@@ -28,8 +33,14 @@ WIDEAbstractStep >> nextStep [
 ]
 
 { #category : #accessing }
-WIDEAbstractStep >> nextStep: anObject [
-	nextStep := anObject
+WIDEAbstractStep >> nextStep: aWIDEStep [
+	nextStep := aWIDEStep.
+	aWIDEStep previousStep: self
+]
+
+{ #category : #'as yet unclassified' }
+WIDEAbstractStep >> nextStepClass [
+	^ self subclassResponsibility 
 ]
 
 { #category : #accessing }
@@ -40,6 +51,11 @@ WIDEAbstractStep >> previousStep [
 { #category : #accessing }
 WIDEAbstractStep >> previousStep: anObject [
 	previousStep := anObject
+]
+
+{ #category : #toDo }
+WIDEAbstractStep >> remove [
+	
 ]
 
 { #category : #accessing }
@@ -56,7 +72,7 @@ WIDEAbstractStep >> selectedElement: anObject [
 
 { #category : #'as yet unclassified' }
 WIDEAbstractStep >> selectedElementHasChanged [
-	self subclassResponsibility 
+	self nextStep: self nextStepClass new
 ]
 
 { #category : #'as yet unclassified' }

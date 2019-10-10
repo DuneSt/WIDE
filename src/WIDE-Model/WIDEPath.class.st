@@ -12,6 +12,17 @@ Class {
 }
 
 { #category : #accessing }
+WIDEPath >> allStepsDo: aBlock [
+	| step |
+	step := self packageStep.
+	[ step ]
+		whileNotNil: [ aBlock value: step.
+			step := [ step nextStep ]
+				on: Error
+				do: [ nil ] ]
+]
+
+{ #category : #accessing }
 WIDEPath >> browser [
 	^ browser
 ]
@@ -24,6 +35,12 @@ WIDEPath >> browser: anObject [
 { #category : #accessing }
 WIDEPath >> browserStrategy [
 	^ self browser strategy
+]
+
+{ #category : #accessing }
+WIDEPath >> initialize [ 
+	super initialize.
+	self packageStep: WIDEPackageStep new
 ]
 
 { #category : #accessing }
