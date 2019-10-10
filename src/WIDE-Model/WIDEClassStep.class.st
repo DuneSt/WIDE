@@ -14,7 +14,7 @@ WIDEClassStep >> allElements [
 
 { #category : #hooks }
 WIDEClassStep >> nextStepClass [
-	^ WIDEProtocolStep 
+	^ self browserStrategy classNextStepClass
 ]
 
 { #category : #accessing }

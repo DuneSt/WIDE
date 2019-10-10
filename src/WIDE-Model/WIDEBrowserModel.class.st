@@ -12,9 +12,10 @@ Class {
 }
 
 { #category : #accessing }
-WIDEBrowserModel >> initialize [ 
+WIDEBrowserModel >> initialize [
 	super initialize.
-	self path: WIDEPath new
+	self path: WIDEPath new.
+	self strategy: WIDEBrowserModelStrategy new
 ]
 
 { #category : #accessing }

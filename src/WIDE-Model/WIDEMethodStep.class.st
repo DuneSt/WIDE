@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 WIDEMethodStep >> allElements [
-	^ self selectedProtocol methods collect: [ :selector | self selectedClass >> selector ]
+	^ self previousStep methodsForSelectedElement 
 ]
 
 { #category : #accessing }

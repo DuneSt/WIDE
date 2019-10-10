@@ -49,8 +49,10 @@ WIDEPath >> packageStep [
 ]
 
 { #category : #accessing }
-WIDEPath >> packageStep: anObject [
-	packageStep := anObject
+WIDEPath >> packageStep: aPackageStep [
+	packageStep := aPackageStep.
+	aPackageStep path: self
+	
 ]
 
 { #category : #accessing }
