@@ -46,6 +46,7 @@ WIDENewBrowser >> createListForStep: aWIDEPathStep on: html [
 							((MDLNestedList
 								elements: aWIDEPathStep allElementsSorted
 								children: [ :packageOrClass | #() ])
+								selectedEntity: aWIDEPathStep selectedElement;
 								beCompact;
 								format: #name;
 								onClickJs: [ :element | 
