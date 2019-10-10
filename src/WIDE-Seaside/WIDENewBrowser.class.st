@@ -54,7 +54,7 @@ WIDENewBrowser >> createListForStep: aWIDEPathStep on: html [
 										script: [ :jsScript | 
 											jsScript
 												<<
-													((html jQuery id: id) load
+													((html jQuery id: id) parent load
 														html: [ :ajaxHtml | 
 															aWIDEPathStep selectedElement: element.
 															ajaxHtml render: self ]) ] ];
