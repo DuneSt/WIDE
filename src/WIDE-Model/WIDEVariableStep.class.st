@@ -6,3 +6,8 @@ Class {
 	#superclass : #WIDEAbstractStep,
 	#category : #'WIDE-Model-Core'
 }
+
+{ #category : #hooks }
+WIDEVariableStep >> nextStepClass [
+	^ WIDEMethodStep 
+]

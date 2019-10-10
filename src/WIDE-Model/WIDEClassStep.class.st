@@ -12,7 +12,7 @@ WIDEClassStep >> allElements [
 	^ self selectedPackage classes 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #hooks }
 WIDEClassStep >> nextStepClass [
 	^ WIDEProtocolStep 
 ]

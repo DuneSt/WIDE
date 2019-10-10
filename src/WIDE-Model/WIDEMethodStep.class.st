@@ -22,6 +22,11 @@ WIDEMethodStep >> nextStep: anObject [
 	self error: 'A method step does not have a next step'
 ]
 
+{ #category : #hooks }
+WIDEMethodStep >> nextStepClass [
+	^ self error: 'Should not occurs, a method step is the last'
+]
+
 { #category : #accesssing }
 WIDEMethodStep >> selectedClass [
 	^ self previousStep selectedClass

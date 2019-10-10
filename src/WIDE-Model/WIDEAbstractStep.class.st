@@ -38,7 +38,7 @@ WIDEAbstractStep >> nextStep: aWIDEStep [
 	aWIDEStep previousStep: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #hooks }
 WIDEAbstractStep >> nextStepClass [
 	^ self subclassResponsibility 
 ]
@@ -55,7 +55,7 @@ WIDEAbstractStep >> previousStep: anObject [
 
 { #category : #toDo }
 WIDEAbstractStep >> remove [
-	
+	self previousStep: nil
 ]
 
 { #category : #accessing }
@@ -70,12 +70,12 @@ WIDEAbstractStep >> selectedElement: anObject [
 	self selectedElementHasChanged
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #hooks }
 WIDEAbstractStep >> selectedElementHasChanged [
 	self nextStep: self nextStepClass new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #hooks }
 WIDEAbstractStep >> selectedElementWillChange [
 	self nextStep ifNotNil: [ self nextStep remove ]
 ]

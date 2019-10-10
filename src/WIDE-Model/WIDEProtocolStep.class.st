@@ -12,7 +12,7 @@ WIDEProtocolStep >> allElements [
 	^ self selectedClass organization protocols
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #hooks }
 WIDEProtocolStep >> nextStepClass [
 	^ WIDEMethodStep 
 ]

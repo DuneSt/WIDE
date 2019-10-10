@@ -20,7 +20,7 @@ WIDEPackageStep >> browserStrategy [
 	^ self path browserStrategy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #hooks }
 WIDEPackageStep >> nextStepClass [
 	^ WIDEClassStep 
 ]
