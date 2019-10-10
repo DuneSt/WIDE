@@ -87,5 +87,5 @@ WIDEAbstractStep >> selectedMethod [
 
 { #category : #accessing }
 WIDEAbstractStep >> toggleMethodsOrVariables [
-	self nextStep toggleMethodsOrVariables
+	self nextStep ifNotNil: [ self nextStep toggleMethodsOrVariables ]
 ]
