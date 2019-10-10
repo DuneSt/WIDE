@@ -111,7 +111,12 @@ WIDEToolbarComponent >> renderMethodsVariablesToggleOn: html [
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								onClick: (html jQuery ajax callback: [ self browserStrategy showProtocols ]);
+								onClick:
+									(html jQuery ajax
+										script:
+											(self browser
+												refreshScriptOn: html
+												withCallback: [ self browserStrategy showProtocols ]));
 								value: self browserStrategy isShowingProtocols.
 							html mdlRadioLabel: [ html text: 'Methods' ] ].
 					html mdlRadioContainer
@@ -119,7 +124,12 @@ WIDEToolbarComponent >> renderMethodsVariablesToggleOn: html [
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								onClick: (html jQuery ajax callback: [ self browserStrategy showVariables ]);
+								onClick:
+									(html jQuery ajax
+										script:
+											(self browser
+												refreshScriptOn: html
+												withCallback: [ self browserStrategy showVariables ]));
 								value: self browserStrategy isShowingVariables.
 							html mdlRadioLabel: [ html text: 'Inst. var.' ] ] ] ]
 ]

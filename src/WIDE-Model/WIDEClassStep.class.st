@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 WIDEClassStep >> allElements [ 
-	^ self selectedPackage classes 
+	^ self selectedPackage definedClasses 
 ]
 
 { #category : #hooks }
@@ -25,4 +25,12 @@ WIDEClassStep >> selectedClass [
 { #category : #accessing }
 WIDEClassStep >> selectedPackage [
 	^ self previousStep selectedElement
+]
+
+{ #category : #hooks }
+WIDEClassStep >> toggleMethodsOrVariables [
+	"Do that to refresh and so change to protocol or variable when recreating the next step"
+
+	self selectedElement
+		ifNotNil: [ self selectedElement: self selectedElement ]
 ]

@@ -41,5 +41,11 @@ WIDEBrowserModel >> strategy [
 
 { #category : #accessing }
 WIDEBrowserModel >> strategy: anObject [
-	strategy := anObject
+	strategy := anObject.
+	strategy model: self
+]
+
+{ #category : #accessing }
+WIDEBrowserModel >> toggleMethodsOrVariables [
+	self path toggleMethodsOrVariables
 ]

@@ -9,6 +9,7 @@ Class {
 	#name : #WIDEBrowserModelStrategy,
 	#superclass : #WIDEObject,
 	#instVars : [
+		'model',
 		'toggleMethodsOrVariables'
 	],
 	#category : #'WIDE-Model-Core'
@@ -39,12 +40,24 @@ WIDEBrowserModelStrategy >> isShowingVariables [
 	^ toggleMethodsOrVariables = #variables
 ]
 
+{ #category : #accessing }
+WIDEBrowserModelStrategy >> model [
+	^ model
+]
+
+{ #category : #accessing }
+WIDEBrowserModelStrategy >> model: anObject [
+	model := anObject
+]
+
 { #category : #toggle }
 WIDEBrowserModelStrategy >> showProtocols [
-	toggleMethodsOrVariables := #methods
+	toggleMethodsOrVariables := #methods.
+	self model ifNotNil: [ self model toggleMethodsOrVariables ]
 ]
 
 { #category : #toggle }
 WIDEBrowserModelStrategy >> showVariables [
-	toggleMethodsOrVariables := #variables
+	toggleMethodsOrVariables := #variables.
+	self model toggleMethodsOrVariables
 ]

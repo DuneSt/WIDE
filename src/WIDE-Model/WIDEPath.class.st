@@ -59,3 +59,8 @@ WIDEPath >> packageStep: aPackageStep [
 WIDEPath >> selectedMethod [
 	^ self packageStep selectedMethod
 ]
+
+{ #category : #accessing }
+WIDEPath >> toggleMethodsOrVariables [
+	self packageStep toggleMethodsOrVariables
+]

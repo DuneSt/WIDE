@@ -54,13 +54,10 @@ WIDEBrowser >> createListForStep: aWIDEPathStep on: html [
 								format: #name;
 								onClickJs: [ :element | 
 									html jQuery ajax
-										script: [ :jsScript | 
-											jsScript
-												<<
-													((html jQuery id: id) parent load
-														html: [ :ajaxHtml | 
-															aWIDEPathStep selectedElement: element.
-															ajaxHtml render: self ]) ] ];
+										script:
+											(self
+												refreshScriptOn: html
+												withCallback: [ aWIDEPathStep selectedElement: element ]) ];
 								withResearchField;
 								filterPseudoRegex;
 								childrenSortBlock: [ :child1 :child2 | child1 name < child2 name ];
@@ -84,6 +81,17 @@ WIDEBrowser >> listComponents [
 { #category : #accessing }
 WIDEBrowser >> listComponents: anObject [
 	listComponents := anObject
+]
+
+{ #category : #initialization }
+WIDEBrowser >> refreshScriptOn: html withCallback: aBlock [
+	^ [ :jsScript | 
+	jsScript
+		<<
+			((html jQuery id: id) parent load
+				html: [ :ajaxHtml | 
+					aBlock value.
+					ajaxHtml render: self ]) ]
 ]
 
 { #category : #rendering }

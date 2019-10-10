@@ -66,6 +66,18 @@ WIDEBrowserModelFunctionalTest >> testProtocolStepIsNilAfterChangeSelectedPackag
 ]
 
 { #category : #tests }
+WIDEBrowserModelFunctionalTest >> testProtocolStepIsReplacedByVariableStepAfterToggleToVariables [
+	| packageStep classStep |
+	packageStep := browserModel path packageStep.
+	packageStep selectedElement: packageStep allElements anyOne.
+	classStep := packageStep nextStep.
+	classStep selectedElement: classStep allElements anyOne.
+	self assert: classStep nextStep class equals: WIDEProtocolStep.
+	browserModel strategy showVariables.
+	self assert: classStep nextStep class equals: WIDEVariableStep 
+]
+
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testVariableStepExistWhenPackageAndClassAreSelectedAndStrategyShowVariables [
 	| packageStep classStep |
 	browserModel strategy showVariables.
