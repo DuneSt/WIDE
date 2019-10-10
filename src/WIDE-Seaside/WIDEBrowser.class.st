@@ -3,25 +3,14 @@ I am the seaside browser able to display a WIDEBrowserModel
 "
 Class {
 	#name : #WIDEBrowser,
-	#superclass : #WIDEPage,
+	#superclass : #MDLHighLevelWidget,
 	#instVars : [
 		'browserModel',
 		'listComponents',
-		'toolbarComponent',
-		'id'
+		'toolbarComponent'
 	],
-	#category : #'WIDE-Seaside-Pages'
+	#category : #'WIDE-Seaside-Widgets'
 }
-
-{ #category : #accessing }
-WIDEBrowser class >> pageName [
-	^ 'Browser'
-]
-
-{ #category : #accessing }
-WIDEBrowser class >> priority [
-	^ 0
-]
 
 { #category : #accessing }
 WIDEBrowser >> browserModel [
@@ -88,7 +77,7 @@ WIDEBrowser >> refreshScriptOn: html withCallback: aBlock [
 	^ [ :jsScript | 
 	jsScript
 		<<
-			((html jQuery id: id) parent load
+			((html jQuery id: self id) parent load
 				html: [ :ajaxHtml | 
 					aBlock value.
 					ajaxHtml render: self ]) ]
@@ -96,8 +85,9 @@ WIDEBrowser >> refreshScriptOn: html withCallback: aBlock [
 
 { #category : #rendering }
 WIDEBrowser >> renderContentOn: html [
+	self ensureId: html.
 	html div
-		id: (id := html nextId);
+		id: self id;
 		with: [ self children
 				do: [ :childComponent | childComponent ensureId: html ].
 			html mdlGrid

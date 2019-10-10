@@ -42,11 +42,6 @@ WIDEPage class >> priority [
 ]
 
 { #category : #accessing }
-WIDEPage >> environment [
-	^ WIDEEnvironment new
-]
-
-{ #category : #accessing }
 WIDEPage >> pathName [
 	^ self class pathName
 ]
