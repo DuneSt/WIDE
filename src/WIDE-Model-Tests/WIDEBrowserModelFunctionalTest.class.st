@@ -12,7 +12,7 @@ WIDEBrowserModelFunctionalTest >> setUp [
 	browserModel := WIDEBrowserModel new
 ]
 
-{ #category : #running }
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testClassStepExistWhenPackageIsSelected [
 	| packageStep |
 	packageStep := browserModel path packageStep.
@@ -20,27 +20,27 @@ WIDEBrowserModelFunctionalTest >> testClassStepExistWhenPackageIsSelected [
 	self assert: browserModel path packageStep nextStep notNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testClassStepIsNil [
 	self assert: browserModel path packageStep nextStep isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testFirstStepExist [
 	self assert: browserModel path packageStep notNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testModelHasPath [
 	self assert: browserModel path notNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testPackageStepHasElements [
 	self assert: browserModel path packageStep allElements notEmpty.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testProtocolStepExistByDefaultWhenPackageAndClassAreSelected [
 	| packageStep classStep |
 	packageStep := browserModel path packageStep.
@@ -51,7 +51,21 @@ WIDEBrowserModelFunctionalTest >> testProtocolStepExistByDefaultWhenPackageAndCl
 	self assert: classStep nextStep class equals: WIDEProtocolStep
 ]
 
-{ #category : #running }
+{ #category : #tests }
+WIDEBrowserModelFunctionalTest >> testProtocolStepIsNilAfterChangeSelectedPackage [
+	| packageStep classStep |
+	packageStep := browserModel path packageStep.
+	packageStep selectedElement: packageStep allElements anyOne.
+	classStep := packageStep nextStep.
+	classStep selectedElement: classStep allElements anyOne.
+	self assert: classStep nextStep notNil.
+	self assert: classStep nextStep class equals: WIDEProtocolStep.
+	packageStep selectedElement: packageStep allElements anyOne.
+	classStep := packageStep nextStep.
+	self assert: classStep nextStep isNil
+]
+
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testVariableStepExistWhenPackageAndClassAreSelectedAndStrategyShowVariables [
 	| packageStep classStep |
 	browserModel strategy showVariables.
