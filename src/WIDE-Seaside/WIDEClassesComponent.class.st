@@ -9,9 +9,9 @@ WIDEClassesComponent >> renderContentOn: html [
 	self ensureId: html.
 	html div
 		id: self id;
-		with: [ html heading
+		with: [ "html heading
 				level: 5;
-				with: 'Classes'.
+				with: 'Classes'."
 			html div
 				class: 'browser-list';
 				with: [ 

@@ -9,9 +9,9 @@ WIDEPackagesComponent >> renderContentOn: html [
 	self ensureId: html.
 	html div
 		id: self id;
-		with: [ html heading
+		with: [ "html heading
 				level: 5;
-				with: 'Packages'.
+				with: 'Packages'."
 			html div
 				class: 'browser-list';
 				with: [ self flag: #hack.	"Not able to make work the sorting via the list."
@@ -38,7 +38,8 @@ WIDEPackagesComponent >> renderContentOn: html [
 											html: [ :ajaxHtml |
 												ajaxHtml render: self browser methodsComponent ]).
 										jsScript << ((html jQuery id: self browser toolbarComponent id) load
-											html: [ :ajaxHtml | ajaxHtml render: self browser toolbarComponent ])
+											html: [ :ajaxHtml | ajaxHtml render: self browser toolbarComponent ];
+											onComplete: ('componentHandler.upgradeElements($("#{1}"));' format: {self browser toolbarComponent asString}) js)
 									 ] ];
 								withResearchField;
 								filterPseudoRegex;

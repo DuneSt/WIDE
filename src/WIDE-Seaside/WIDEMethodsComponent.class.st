@@ -9,9 +9,9 @@ WIDEMethodsComponent >> renderContentOn: html [
 	self ensureId: html.
 	html div
 		id: self id;
-		with: [ html heading
+		with: [ "html heading
 				level: 5;
-				with: 'Methods'.
+				with: 'Methods'."
 			html div
 				class: 'browser-list';
 				with: [ 

@@ -59,17 +59,18 @@ WIDEToolbarComponent >> renderFlatHierarchyToogleOn: html [
 				with: [ :group | 
 					html mdlRadioContainer
 						for: html nextId;
+						disabled: (self browserState selectedClass class = WIDENullClass);
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: 'Flat'.
+								value: true; flag: #TODO. "Use browser state instead"
 							html mdlRadioLabel: [ html text: 'Flat' ] ].
 					html mdlRadioContainer
 						for: html nextId;
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: 'Hierarchy'.
+								value: false; flag: #TODO. "Use browser state instead"
 							html mdlRadioLabel: [ html text: 'Hierarchy' ] ] ] ]
 ]
 
@@ -85,14 +86,14 @@ WIDEToolbarComponent >> renderInstanceSideClassSideToogleOn: html [
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: 'Inst. side'.
+								value: true; flag: #TODO. "Use browser state instead"
 							html mdlRadioLabel: [ html text: 'Inst. side' ] ].
 					html mdlRadioContainer
 						for: html nextId;
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: 'Class side'.
+								value: false; flag: #TODO. "Use browser state instead"
 							html mdlRadioLabel: [ html text: 'Class side' ] ] ] ]
 ]
 
@@ -100,7 +101,8 @@ WIDEToolbarComponent >> renderInstanceSideClassSideToogleOn: html [
 WIDEToolbarComponent >> renderMethodsVariablesToogleOn: html [
 	html div
 		style: 'display: inline-block; width: 200px;'; flag: #TODO; "Move to stylesheet."
-		with: [ html radioGroup
+		with: [ 
+			html radioGroup
 				selected: true;
 				with: [ :group | 
 					html mdlRadioContainer
@@ -108,13 +110,13 @@ WIDEToolbarComponent >> renderMethodsVariablesToogleOn: html [
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: 'Methods'.
+								value: true; flag: #TODO. "Use browser state instead"
 							html mdlRadioLabel: [ html text: 'Methods' ] ].
 					html mdlRadioContainer
 						for: html nextId;
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: 'Inst. var.'.
+								value: false; flag: #TODO. "Use browser state instead"
 							html mdlRadioLabel: [ html text: 'Inst. var.' ] ] ] ]
 ]

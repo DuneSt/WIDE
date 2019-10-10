@@ -25,7 +25,7 @@ WIDELibrary >> projectCss [
         box-shadow: inset 0px -4px 0px 0px rgba(233,30,99,1) !important;
     }
 	.browser-list{
-		height: 400px;
+		height: 350px;
 	}'
 ]
 

@@ -18,14 +18,13 @@ WIDEHeader >> possiblePages [
 { #category : #rendering }
 WIDEHeader >> renderContentOn: html [
 	html mdlLayoutHeader
-		waterfall;
-		with: [ html
+		with: [ "html
 				mdlLayoutHeaderRow: [ html mdlNavigationLink
-						callback: [ "Just refresh" ];
+						callback: [ ""Just refresh"" ];
 						with: [ html
 								mdlLayoutTitle: 'A web IDE for Pharo.' ].
 					html mdlLayoutSpacer.
-					html text: 'Version 0.0.0'. ].
+					html text: 'Version 0.0.0'. ]".
 			html
 				mdlLayoutTabBar: [ self possiblePages
 						do: [ :aClass | 
