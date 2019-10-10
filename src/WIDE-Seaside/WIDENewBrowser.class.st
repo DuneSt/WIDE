@@ -98,7 +98,14 @@ WIDENewBrowser >> renderContentOn: html [
 				shadow: 2;
 				with: [ html mdlCell
 						size: 12;
-						with: 'Code' ] ]
+						with: [ html
+								render:
+									(MonacoComponent
+										code:
+											([ self browserModel selectedMethod sourceCode ]
+												on: Error
+												do: [ '' ])
+										language: MonacoLanguage smalltalk) ] ] ]
 ]
 
 { #category : #accessing }

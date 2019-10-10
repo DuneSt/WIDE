@@ -79,3 +79,8 @@ WIDEAbstractStep >> selectedElementHasChanged [
 WIDEAbstractStep >> selectedElementWillChange [
 	self nextStep ifNotNil: [ self nextStep remove ]
 ]
+
+{ #category : #accessing }
+WIDEAbstractStep >> selectedMethod [
+	^ self nextStep selectedMethod
+]

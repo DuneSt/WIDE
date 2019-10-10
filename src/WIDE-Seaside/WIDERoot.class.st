@@ -168,7 +168,10 @@ WIDERoot >> updateRoot: anHtmlRoot [
 	anHtmlRoot title: 'A web IDE for Pharo.'.
 	anHtmlRoot meta
 		attributeAt: 'name' put: 'viewport';
-		content: 'width=device-width, initial-scale=1'
+		content: 'width=device-width, initial-scale=1'.
+	anHtmlRoot javascript
+		url:
+			'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.15.6/min/vs/loader.js'
 ]
 
 { #category : #updating }

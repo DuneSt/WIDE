@@ -35,6 +35,11 @@ WIDEMethodStep >> selectedElementHasChanged [
 WIDEMethodStep >> selectedElementWillChange [
 ]
 
+{ #category : #accessing }
+WIDEMethodStep >> selectedMethod [
+	^ self selectedElement
+]
+
 { #category : #accesssing }
 WIDEMethodStep >> selectedProtocol [
 	^ self previousStep selectedElement

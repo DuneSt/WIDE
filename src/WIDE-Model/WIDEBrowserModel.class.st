@@ -29,6 +29,11 @@ WIDEBrowserModel >> path: aPath [
 ]
 
 { #category : #accessing }
+WIDEBrowserModel >> selectedMethod [
+	^ self path selectedMethod
+]
+
+{ #category : #accessing }
 WIDEBrowserModel >> strategy [
 	^ strategy
 ]

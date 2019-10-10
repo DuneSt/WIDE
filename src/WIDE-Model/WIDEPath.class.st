@@ -52,3 +52,8 @@ WIDEPath >> packageStep [
 WIDEPath >> packageStep: anObject [
 	packageStep := anObject
 ]
+
+{ #category : #accessing }
+WIDEPath >> selectedMethod [
+	^ self packageStep selectedMethod
+]
