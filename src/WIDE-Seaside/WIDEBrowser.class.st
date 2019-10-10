@@ -1,19 +1,14 @@
 "
-Description
---------------------
-
-TODO
+I am the seaside browser able to display a WIDEBrowserModel
 "
 Class {
 	#name : #WIDEBrowser,
 	#superclass : #WIDEPage,
 	#instVars : [
-		'state',
-		'packagesComponent',
-		'classesComponent',
-		'protocolsComponent',
-		'methodsComponent',
-		'toolbarComponent'
+		'browserModel',
+		'listComponents',
+		'toolbarComponent',
+		'id'
 	],
 	#category : #'WIDE-Seaside-Pages'
 }
@@ -25,99 +20,95 @@ WIDEBrowser class >> pageName [
 
 { #category : #accessing }
 WIDEBrowser class >> priority [
-	^ 1
+	^ 0
 ]
 
 { #category : #accessing }
-WIDEBrowser >> browserState [
-	^ self session browserState
+WIDEBrowser >> browserModel [
+	^ browserModel
+]
+
+{ #category : #accessing }
+WIDEBrowser >> browserModel: anObject [
+	browserModel := anObject
 ]
 
 { #category : #hooks }
 WIDEBrowser >> children [
-	^ { self packagesComponent. self classesComponent. self protocolsComponent. self methodsComponent. self toolbarComponent }
+	^ self listComponents, { self toolbarComponent }
 ]
 
-{ #category : #accessing }
-WIDEBrowser >> classesComponent [
-	^ classesComponent
-]
-
-{ #category : #accessing }
-WIDEBrowser >> classesComponent: anObject [
-	classesComponent := anObject
+{ #category : #rendering }
+WIDEBrowser >> createListForStep: aWIDEPathStep on: html [
+	html mdlCell
+		size: 3;
+		with: [ html div
+				class: 'browser-list';
+				with: [ html
+						render:
+							((MDLNestedList
+								elements: aWIDEPathStep allElementsSorted
+								children: [ :packageOrClass | #() ])
+								selectedEntity: aWIDEPathStep selectedElement;
+								beCompact;
+								format: #name;
+								onClickJs: [ :element | 
+									html jQuery ajax
+										script: [ :jsScript | 
+											jsScript
+												<<
+													((html jQuery id: id) parent load
+														html: [ :ajaxHtml | 
+															aWIDEPathStep selectedElement: element.
+															ajaxHtml render: self ]) ] ];
+								withResearchField;
+								filterPseudoRegex;
+								childrenSortBlock: [ :child1 :child2 | child1 name < child2 name ];
+								yourself) ] ]
 ]
 
 { #category : #initialization }
 WIDEBrowser >> initialize [
 	super initialize.
-	self packagesComponent: (WIDEPackagesComponent browser: self).
-	self classesComponent: (WIDEClassesComponent browser: self).
-	self protocolsComponent: (WIDEProtocolsComponent browser: self).
-	self methodsComponent: (WIDEMethodsComponent browser: self).
+	self browserModel: (WIDEBrowserModel new).
 	self toolbarComponent: (WIDEToolbarComponent browser: self).
+	self listComponents: OrderedCollection new.
+
 ]
 
 { #category : #accessing }
-WIDEBrowser >> methodsComponent [
-	^ methodsComponent
+WIDEBrowser >> listComponents [
+	^ listComponents
 ]
 
 { #category : #accessing }
-WIDEBrowser >> methodsComponent: anObject [
-	methodsComponent := anObject
-]
-
-{ #category : #accessing }
-WIDEBrowser >> packagesComponent [
-	^ packagesComponent
-]
-
-{ #category : #accessing }
-WIDEBrowser >> packagesComponent: anObject [
-	packagesComponent := anObject
-]
-
-{ #category : #accessing }
-WIDEBrowser >> protocolsComponent [
-	^ protocolsComponent
-]
-
-{ #category : #accessing }
-WIDEBrowser >> protocolsComponent: anObject [
-	protocolsComponent := anObject
+WIDEBrowser >> listComponents: anObject [
+	listComponents := anObject
 ]
 
 { #category : #rendering }
 WIDEBrowser >> renderContentOn: html [
-	self children do: [ :childComponent |
-		childComponent ensureId: html ].
-	html mdlGrid
-		shadow: 2;
-		with: [ 
-			html mdlCell
-				size: 3;
-				with: [
-					html render: self packagesComponent ].
-			html mdlCell
-				size: 3;
-				with: [ 
-					html render: self classesComponent ].
-			html mdlCell
-				size: 3;
-				with: [
-					html render: self protocolsComponent ].
-			html mdlCell
-				size: 3;
-				with: [ 
-					html render: self methodsComponent ] ].
-	html render: self toolbarComponent.
-	html mdlGrid
-		shadow: 2;
-		with: [ 
-			html mdlCell
-				size: 12;
-				with: 'Code'. ].
+	html div
+		id: (id := html nextId);
+		with: [ self children
+				do: [ :childComponent | childComponent ensureId: html ].
+			html mdlGrid
+				shadow: 2;
+				with: [ self browserModel path
+						allStepsDo: [ :aStep | self createListForStep: aStep on: html ] ].
+			html render: self toolbarComponent.
+			html mdlGrid
+				shadow: 2;
+				with: [ html mdlCell
+						size: 12;
+						with: [ html
+								render:
+									(MonacoComponent
+										code:
+											([ self browserModel selectedMethod sourceCode ]
+												on: Error
+												do: [ '' ])
+										language: MonacoLanguage smalltalk) ] ] ]
 ]
 
 { #category : #accessing }

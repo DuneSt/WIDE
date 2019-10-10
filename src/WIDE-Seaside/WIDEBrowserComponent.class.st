@@ -25,11 +25,6 @@ WIDEBrowserComponent >> browser: anObject [
 ]
 
 { #category : #accessing }
-WIDEBrowserComponent >> browserState [
-	^ self browser browserState
-]
-
-{ #category : #accessing }
 WIDEBrowserComponent >> environment [
 	^ self browser environment
 ]

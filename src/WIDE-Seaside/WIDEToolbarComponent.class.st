@@ -38,15 +38,15 @@ WIDEToolbarComponent >> renderContentOn: html [
 				with: [ 
 					html mdlButton
 						raised;
-						disabled: (self browserState selectedClass class = WIDENullClass);
+						disabled: true;
 						with: 'Class refs.'.
 					html mdlButton
 						raised;
-						disabled: (self browserState selectedMethod class = WIDENullMethod);
+						disabled: true;
 						with: 'Implementors'.
 					html mdlButton
 						raised;
-						disabled: (self browserState selectedMethod class = WIDENullMethod);
+						disabled: true;
 						with: 'Senders' ] ] ]
 ]
 
@@ -59,7 +59,7 @@ WIDEToolbarComponent >> renderFlatHierarchyToogleOn: html [
 				with: [ :group | 
 					html mdlRadioContainer
 						for: html nextId;
-						disabled: (self browserState selectedClass class = WIDENullClass);
+						disabled: false;
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
