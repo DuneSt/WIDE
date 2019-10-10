@@ -14,7 +14,7 @@ Class {
 	#category : #'WIDE-Model-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #toggle }
 WIDEBrowserModelStrategy >> classNextStepClass [
 	self isShowingProtocols
 		ifTrue: [ ^ WIDEProtocolStep ].
@@ -23,28 +23,28 @@ WIDEBrowserModelStrategy >> classNextStepClass [
 	self error: 'Must be methods or variables'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 WIDEBrowserModelStrategy >> initialize [
 	super initialize.
 	self showProtocols
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 WIDEBrowserModelStrategy >> isShowingProtocols [
 	^ toggleMethodsOrVariables = #methods
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 WIDEBrowserModelStrategy >> isShowingVariables [
 	^ toggleMethodsOrVariables = #variables
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #toggle }
 WIDEBrowserModelStrategy >> showProtocols [
 	toggleMethodsOrVariables := #methods
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #toggle }
 WIDEBrowserModelStrategy >> showVariables [
 	toggleMethodsOrVariables := #variables
 ]
