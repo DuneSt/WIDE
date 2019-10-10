@@ -112,6 +112,11 @@ WIDEBrowser >> renderContentOn: html [
 ]
 
 { #category : #accessing }
+WIDEBrowser >> strategy [
+	^ self browserModel strategy
+]
+
+{ #category : #accessing }
 WIDEBrowser >> toolbarComponent [
 	^ toolbarComponent
 ]

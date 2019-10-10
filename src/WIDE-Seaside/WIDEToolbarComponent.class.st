@@ -32,7 +32,7 @@ WIDEToolbarComponent >> renderContentOn: html [
 				size: 2;
 				shadow: 2;
 				with: [ 
-					self renderMethodsVariablesToogleOn: html ].
+					self renderMethodsVariablesToggleOn: html ].
 			html mdlCell
 				size: 5;
 				with: [ 
@@ -98,11 +98,12 @@ WIDEToolbarComponent >> renderInstanceSideClassSideToogleOn: html [
 ]
 
 { #category : #rendering }
-WIDEToolbarComponent >> renderMethodsVariablesToogleOn: html [
+WIDEToolbarComponent >> renderMethodsVariablesToggleOn: html [
 	html div
-		style: 'display: inline-block; width: 200px;'; flag: #TODO; "Move to stylesheet."
-		with: [ 
-			html radioGroup
+		style: 'display: inline-block; width: 200px;';
+		flag: #TODO;
+		"Move to stylesheet."
+			with: [ html radioGroup
 				selected: true;
 				with: [ :group | 
 					html mdlRadioContainer
@@ -110,13 +111,15 @@ WIDEToolbarComponent >> renderMethodsVariablesToogleOn: html [
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: true; flag: #TODO. "Use browser state instead"
+								onClick: (html jQuery ajax callback: [ self browserStrategy showProtocols ]);
+								value: self browserStrategy isShowingProtocols.
 							html mdlRadioLabel: [ html text: 'Methods' ] ].
 					html mdlRadioContainer
 						for: html nextId;
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: false; flag: #TODO. "Use browser state instead"
+								onClick: (html jQuery ajax callback: [ self browserStrategy showVariables ]);
+								value: self browserStrategy isShowingVariables.
 							html mdlRadioLabel: [ html text: 'Inst. var.' ] ] ] ]
 ]
