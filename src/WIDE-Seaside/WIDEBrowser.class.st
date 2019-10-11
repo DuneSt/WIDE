@@ -100,7 +100,10 @@ WIDEBrowser >> refreshScriptOn: html withCallback: aBlock [
 			((html jQuery id: self id) parent load
 				html: [ :ajaxHtml | 
 					aBlock value.
-					ajaxHtml render: self ]) ]
+					ajaxHtml render: self ];
+				onComplete:
+					('componentHandler.upgradeElements($("#{1}"));'
+						format: {self id asString}) js) ]
 ]
 
 { #category : #rendering }
