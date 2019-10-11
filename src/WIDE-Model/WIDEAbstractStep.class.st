@@ -86,6 +86,11 @@ WIDEAbstractStep >> selectedMethod [
 ]
 
 { #category : #accessing }
+WIDEAbstractStep >> toggleInstanceOrClass [
+	self nextStep ifNotNil: [ self nextStep toggleInstanceOrClass ]
+]
+
+{ #category : #accessing }
 WIDEAbstractStep >> toggleMethodsOrVariables [
 	self nextStep ifNotNil: [ self nextStep toggleMethodsOrVariables ]
 ]

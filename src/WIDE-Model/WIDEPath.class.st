@@ -61,6 +61,11 @@ WIDEPath >> selectedMethod [
 ]
 
 { #category : #accessing }
+WIDEPath >> toggleInstanceOrClass [
+	self packageStep toggleInstanceOrClass
+]
+
+{ #category : #accessing }
 WIDEPath >> toggleMethodsOrVariables [
 	self packageStep toggleMethodsOrVariables
 ]

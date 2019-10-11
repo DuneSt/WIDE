@@ -46,6 +46,11 @@ WIDEBrowserModel >> strategy: anObject [
 ]
 
 { #category : #accessing }
+WIDEBrowserModel >> toggleInstanceOrClass [
+	self path toggleInstanceOrClass
+]
+
+{ #category : #accessing }
 WIDEBrowserModel >> toggleMethodsOrVariables [
 	self path toggleMethodsOrVariables
 ]

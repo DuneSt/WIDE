@@ -9,7 +9,8 @@ Class {
 
 { #category : #accessing }
 WIDEClassStep >> allElements [ 
-	^ self selectedPackage definedClasses 
+	^ self selectedPackage definedClasses collect: [ :class |
+		self browserStrategy getMetaLevel: class ]
 ]
 
 { #category : #hooks }
@@ -27,10 +28,14 @@ WIDEClassStep >> selectedPackage [
 	^ self previousStep selectedElement
 ]
 
-{ #category : #hooks }
-WIDEClassStep >> toggleMethodsOrVariables [
-	"Do that to refresh and so change to protocol or variable when recreating the next step"
+{ #category : #accessing }
+WIDEClassStep >> toggleInstanceOrClass [
+	self selectedElement
+		ifNotNil: [ self selectedElement: self selectedElement ]
+]
 
+{ #category : #accessing }
+WIDEClassStep >> toggleMethodsOrVariables [
 	self selectedElement
 		ifNotNil: [ self selectedElement: self selectedElement ]
 ]

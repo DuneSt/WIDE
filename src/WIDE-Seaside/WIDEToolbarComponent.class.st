@@ -86,14 +86,26 @@ WIDEToolbarComponent >> renderInstanceSideClassSideToogleOn: html [
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: true; flag: #TODO. "Use browser state instead"
+								onClick:
+									(html jQuery ajax
+										script:
+											(self browser
+												refreshScriptOn: html
+												withCallback: [ self browserStrategy showInstanceSide ]));
+								value: self browserStrategy isShowingInstanceSide.
 							html mdlRadioLabel: [ html text: 'Inst. side' ] ].
 					html mdlRadioContainer
 						for: html nextId;
 						rippleEffect;
 						with: [ group mdlRadioButton
 								id: html lastId;
-								value: false; flag: #TODO. "Use browser state instead"
+								onClick:
+									(html jQuery ajax
+										script:
+											(self browser
+												refreshScriptOn: html
+												withCallback: [ self browserStrategy showClassSide ]));
+								value: self browserStrategy isShowingClassSide.
 							html mdlRadioLabel: [ html text: 'Class side' ] ] ] ]
 ]
 

@@ -10,7 +10,8 @@ Class {
 	#superclass : #WIDEObject,
 	#instVars : [
 		'model',
-		'toggleMethodsOrVariables'
+		'toggleMethodsOrVariables',
+		'toggleInstanceOrClassSide'
 	],
 	#category : #'WIDE-Model-Core'
 }
@@ -24,10 +25,31 @@ WIDEBrowserModelStrategy >> classNextStepClass [
 	self error: 'Must be methods or variables'
 ]
 
+{ #category : #toggle }
+WIDEBrowserModelStrategy >> getMetaLevel: class [
+	self isShowingInstanceSide
+		ifTrue: [ ^ class instanceSide ].
+	self isShowingClassSide
+		ifTrue: [ ^ class classSide ].
+		
+	self error: 'Must be instance or class side'
+]
+
 { #category : #initialization }
 WIDEBrowserModelStrategy >> initialize [
 	super initialize.
-	self showProtocols
+	self showProtocols.
+	self showInstanceSide
+]
+
+{ #category : #testing }
+WIDEBrowserModelStrategy >> isShowingClassSide [
+	^ toggleInstanceOrClassSide = #class
+]
+
+{ #category : #testing }
+WIDEBrowserModelStrategy >> isShowingInstanceSide [
+	^ toggleInstanceOrClassSide = #instance
 ]
 
 { #category : #testing }
@@ -51,6 +73,18 @@ WIDEBrowserModelStrategy >> model: anObject [
 ]
 
 { #category : #toggle }
+WIDEBrowserModelStrategy >> showClassSide [
+	toggleInstanceOrClassSide := #class.
+	self model ifNotNil: [ self model toggleInstanceOrClass ]
+]
+
+{ #category : #toggle }
+WIDEBrowserModelStrategy >> showInstanceSide [
+	toggleInstanceOrClassSide := #instance.
+	self model ifNotNil: [ self model toggleInstanceOrClass ]
+]
+
+{ #category : #toggle }
 WIDEBrowserModelStrategy >> showProtocols [
 	toggleMethodsOrVariables := #methods.
 	self model ifNotNil: [ self model toggleMethodsOrVariables ]
@@ -59,5 +93,5 @@ WIDEBrowserModelStrategy >> showProtocols [
 { #category : #toggle }
 WIDEBrowserModelStrategy >> showVariables [
 	toggleMethodsOrVariables := #variables.
-	self model toggleMethodsOrVariables
+	self model ifNotNil: [ self model toggleMethodsOrVariables ]
 ]
