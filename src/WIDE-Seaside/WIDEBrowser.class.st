@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'browserModel',
 		'listComponents',
-		'toolbarComponent'
+		'toolbarComponent',
+		'pathViewsComponent'
 	],
 	#category : #'WIDE-Seaside-Widgets'
 }
@@ -24,7 +25,7 @@ WIDEBrowser >> browserModel: anObject [
 
 { #category : #hooks }
 WIDEBrowser >> children [
-	^ self listComponents, { self toolbarComponent }
+	^ self listComponents, { self toolbarComponent. self pathViewsComponent }
 ]
 
 { #category : #rendering }
@@ -59,7 +60,14 @@ WIDEBrowser >> initialize [
 	self browserModel: (WIDEBrowserModel new).
 	self toolbarComponent: (WIDEToolbarComponent browser: self).
 	self listComponents: OrderedCollection new.
-
+	self pathViewsComponent: (WIDEPathViews browserModel: self browserModel).
+	self pathViewsComponent
+		addSegmentView: (MonacoComponent
+										code:
+											([ self browserModel selectedMethod sourceCode ]
+												on: Error
+												do: [ '' ])
+										language: MonacoLanguage smalltalk) named: 'Editor'
 ]
 
 { #category : #accessing }
@@ -70,6 +78,16 @@ WIDEBrowser >> listComponents [
 { #category : #accessing }
 WIDEBrowser >> listComponents: anObject [
 	listComponents := anObject
+]
+
+{ #category : #accessing }
+WIDEBrowser >> pathViewsComponent [
+	^ pathViewsComponent
+]
+
+{ #category : #accessing }
+WIDEBrowser >> pathViewsComponent: anObject [
+	pathViewsComponent := anObject
 ]
 
 { #category : #initialization }
@@ -95,18 +113,7 @@ WIDEBrowser >> renderContentOn: html [
 				with: [ self browserModel path
 						allStepsDo: [ :aStep | self createListForStep: aStep on: html ] ].
 			html render: self toolbarComponent.
-			html mdlGrid
-				shadow: 2;
-				with: [ html mdlCell
-						size: 12;
-						with: [ html
-								render:
-									(MonacoComponent
-										code:
-											([ self browserModel selectedMethod sourceCode ]
-												on: Error
-												do: [ '' ])
-										language: MonacoLanguage smalltalk) ] ] ]
+			html render: self pathViewsComponent ]
 ]
 
 { #category : #accessing }
