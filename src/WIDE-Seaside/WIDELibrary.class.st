@@ -26,6 +26,9 @@ WIDELibrary >> projectCss [
     }
 	.browser-list{
 		height: 350px;
+	}
+	.mdl-sorted-table{
+		width: 100%;
 	}'
 ]
 
