@@ -31,7 +31,7 @@ WIDEClassStep >> selectedPackage [
 { #category : #accessing }
 WIDEClassStep >> toggleInstanceOrClass [
 	self selectedElement
-		ifNotNil: [ self selectedElement: self selectedElement ]
+		ifNotNil: [ self selectedElement: (self browserStrategy getMetaLevel: self selectedElement) ]
 ]
 
 { #category : #accessing }
