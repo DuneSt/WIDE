@@ -28,16 +28,6 @@ WIDETabComponent >> name: anObject [
 
 { #category : #rendering }
 WIDETabComponent >> renderContentOn: html [
-	CmCommandGroup forMDL
-		register: (CmBlockCommand new
-						block: [ Transcript show: 'coucou';cr ];
-						name: 'Coucou';
-						asMDLCommand);
-		register: (CmBlockCommand new
-						block: [ Transcript show: 'caca';cr ];
-						name: 'Caca';
-						asMDLCommand);
-		asMDLMenuOn: html.
 	html render: self wrappedComponent
 ]
 
