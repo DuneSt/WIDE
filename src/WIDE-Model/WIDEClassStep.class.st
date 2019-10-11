@@ -9,8 +9,8 @@ Class {
 
 { #category : #accessing }
 WIDEClassStep >> allElements [ 
-	^ self selectedPackage definedClasses collect: [ :class |
-		self browserStrategy getMetaLevel: class ]
+	^ (self browserEnvironment classesFor: self selectedPackage)
+		collect: [ :class | self browserStrategy getMetaLevel: class ]
 ]
 
 { #category : #hooks }

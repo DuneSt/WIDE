@@ -27,6 +27,7 @@ WIDEBrowserModelStrategy >> classNextStepClass [
 
 { #category : #toggle }
 WIDEBrowserModelStrategy >> getMetaLevel: class [
+	"I return the meta-level of #class depending of my state (either instance or class side)."
 	self isShowingInstanceSide
 		ifTrue: [ ^ class instanceSide ].
 	self isShowingClassSide

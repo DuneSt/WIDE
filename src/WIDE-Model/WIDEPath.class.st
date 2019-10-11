@@ -33,6 +33,11 @@ WIDEPath >> browser: anObject [
 ]
 
 { #category : #accessing }
+WIDEPath >> browserEnvironment [
+	^ self browser environment
+]
+
+{ #category : #accessing }
 WIDEPath >> browserStrategy [
 	^ self browser strategy
 ]

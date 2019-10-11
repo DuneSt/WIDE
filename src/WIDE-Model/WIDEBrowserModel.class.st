@@ -6,16 +6,28 @@ Class {
 	#superclass : #WIDEObject,
 	#instVars : [
 		'strategy',
-		'path'
+		'path',
+		'environment'
 	],
 	#category : #'WIDE-Model-Core'
 }
 
 { #category : #accessing }
+WIDEBrowserModel >> environment [
+	^ environment
+]
+
+{ #category : #accessing }
+WIDEBrowserModel >> environment: anObject [
+	environment := anObject
+]
+
+{ #category : #initialize }
 WIDEBrowserModel >> initialize [
 	super initialize.
 	self path: WIDEPath new.
-	self strategy: WIDEBrowserModelStrategy new
+	self strategy: WIDEBrowserModelStrategy new.
+	self environment: WIDEEnvironment new
 ]
 
 { #category : #accessing }

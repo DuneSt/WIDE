@@ -12,7 +12,17 @@ Class {
 
 { #category : #accessing }
 WIDEPackageStep >> allElements [ 
-	^ RPackage organizer packages
+	^ self browserEnvironment packages
+]
+
+{ #category : #accessing }
+WIDEPackageStep >> browser [
+	^ self path browser
+]
+
+{ #category : #accessing }
+WIDEPackageStep >> browserEnvironment [
+	^ self path browserEnvironment
 ]
 
 { #category : #accessing }

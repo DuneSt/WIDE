@@ -23,6 +23,16 @@ WIDEAbstractStep >> allElementsSorted [
 ]
 
 { #category : #accessing }
+WIDEAbstractStep >> browser [
+	^ self previousStep browser
+]
+
+{ #category : #accessing }
+WIDEAbstractStep >> browserEnvironment [
+	^ self previousStep browserEnvironment
+]
+
+{ #category : #accessing }
 WIDEAbstractStep >> browserStrategy [
 	^ self previousStep browserStrategy
 ]

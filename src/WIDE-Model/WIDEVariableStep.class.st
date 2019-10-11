@@ -9,12 +9,12 @@ Class {
 
 { #category : #accessing }
 WIDEVariableStep >> allElements [
-	^ self selectedClass slots
+	^ self browserEnvironment slotsFor: self selectedClass
 ]
 
 { #category : #accessing }
 WIDEVariableStep >> methodsForSelectedElement [
-	^ self selectedElement usingMethods
+	^ self browserEnvironment methodsReferencingSlot: self selectedElement
 ]
 
 { #category : #hooks }
