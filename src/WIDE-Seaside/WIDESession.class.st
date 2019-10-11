@@ -15,21 +15,10 @@ Class {
 	#name : #WIDESession,
 	#superclass : #WASession,
 	#instVars : [
-		'rootComponent',
-		'browserState'
+		'rootComponent'
 	],
 	#category : #'WIDE-Seaside-Core'
 }
-
-{ #category : #accessing }
-WIDESession >> browserState [
-	^ browserState ifNil: [ browserState := WIDEBrowserState new ]
-]
-
-{ #category : #accessing }
-WIDESession >> browserState: anObject [
-	browserState := anObject
-]
 
 { #category : #accessing }
 WIDESession >> rootComponent [
