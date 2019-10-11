@@ -78,6 +78,12 @@ WIDEBrowserModelFunctionalTest >> testProtocolStepIsReplacedByVariableStepAfterT
 ]
 
 { #category : #tests }
+WIDEBrowserModelFunctionalTest >> testShowVariablesWhenStepIsNotReached [
+	browserModel strategy showVariables.
+	
+]
+
+{ #category : #tests }
 WIDEBrowserModelFunctionalTest >> testVariableStepExistWhenPackageAndClassAreSelectedAndStrategyShowVariables [
 	| packageStep classStep |
 	browserModel strategy showVariables.
