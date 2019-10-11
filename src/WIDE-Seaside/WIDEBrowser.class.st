@@ -57,17 +57,19 @@ WIDEBrowser >> createListForStep: aWIDEPathStep on: html [
 { #category : #initialization }
 WIDEBrowser >> initialize [
 	super initialize.
-	self browserModel: (WIDEBrowserModel new).
+	self browserModel: WIDEBrowserModel new.
 	self toolbarComponent: (WIDEToolbarComponent browser: self).
 	self listComponents: OrderedCollection new.
-	self pathViewsComponent: (WIDEPathViews browserModel: self browserModel).
+	self
+		pathViewsComponent: (WIDEPathViews browserModel: self browserModel).
 	self pathViewsComponent
-		addSegmentView: (MonacoComponent
-										code:
-											([ self browserModel selectedMethod sourceCode ]
-												on: Error
-												do: [ '' ])
-										language: MonacoLanguage smalltalk) named: 'Editor'
+		addSegmentView:
+			(MonacoComponent
+				code: [ [ self browserModel selectedMethod sourceCode ]
+						on: Error
+						do: [ '' ] ]
+				language: MonacoLanguage smalltalk)
+		named: 'Editor'
 ]
 
 { #category : #accessing }
