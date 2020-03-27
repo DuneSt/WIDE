@@ -64,11 +64,13 @@ WIDEBrowser >> initialize [
 		pathViewsComponent: (WIDEPathViews browserModel: self browserModel).
 	self pathViewsComponent
 		addSegmentView:
-			(MonacoComponent
+			(MonacoComponent new
 				code: [ [ self browserModel selectedMethod sourceCode ]
 						on: Error
-						do: [ '' ] ]
-				language: MonacoLanguage smalltalk)
+						do: [ '' ] ];
+				uri: [ self browserModel path asUri ];
+				language: MonacoLanguage smalltalk;
+				yourself)
 		named: 'Editor'
 ]
 

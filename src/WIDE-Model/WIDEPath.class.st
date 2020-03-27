@@ -22,6 +22,12 @@ WIDEPath >> allStepsDo: aBlock [
 				do: [ nil ] ]
 ]
 
+{ #category : #converting }
+WIDEPath >> asUri [
+	^ 'wide://browser/' , (((self stepsIterator collect: [ :step |
+		step asUriSegment ]) reject: #isNil) joinUsing: '/')
+]
+
 { #category : #accessing }
 WIDEPath >> browser [
 	^ browser
@@ -63,6 +69,16 @@ WIDEPath >> packageStep: aPackageStep [
 { #category : #accessing }
 WIDEPath >> selectedMethod [
 	^ self packageStep selectedMethod
+]
+
+{ #category : #'as yet unclassified' }
+WIDEPath >> stepsBasicIterator [
+	^ LinkedListIterator on: self packageStep nextLinkBlock: [ :step | [ step nextStep] on: Error do: [ nil ] ]
+]
+
+{ #category : #'as yet unclassified' }
+WIDEPath >> stepsIterator [
+	^ self stepsBasicIterator withCollectionAPI
 ]
 
 { #category : #accessing }

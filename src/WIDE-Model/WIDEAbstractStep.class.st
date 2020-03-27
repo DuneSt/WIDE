@@ -22,6 +22,11 @@ WIDEAbstractStep >> allElementsSorted [
 	^ self allElements sorted: #name ascending
 ]
 
+{ #category : #converting }
+WIDEAbstractStep >> asUriSegment [
+	^ self selectedElement ifNotNil: #name
+]
+
 { #category : #accessing }
 WIDEAbstractStep >> browser [
 	^ self previousStep browser
